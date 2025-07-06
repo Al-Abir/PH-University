@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:prod": "node ./dist/server.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src  --ext .js,.ts,.mjs,.cjs",
     "lint:fix": "eslint src --ext .js,.ts,.mjs,.cjs --fix",
     "ptr": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
-    "ptr:fix":"npx prettier --write src"
+    "ptr:fix": "npx prettier --write src"
+    
   },
   "keywords": [],
   "author": "",
@@ -31,6 +34,7 @@
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.3.0",
     "prettier": "^3.6.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.1"
   }

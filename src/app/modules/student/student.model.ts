@@ -82,7 +82,10 @@ export const StudentSchema = new Schema<IStudent>(
       required: true,
       unique: true,
     },
-    name: UserNameSchema,
+    name: {
+      type: UserNameSchema,
+      required: true,
+    },
     gender: {
       type: String,
       enum: ['male', 'female'],
@@ -116,12 +119,22 @@ export const StudentSchema = new Schema<IStudent>(
       type: String,
       required: true,
     },
-    guardian: guardianSchema,
-    localGuardian: localGuardianSchema,
+    guardian: {
+      type: guardianSchema,
+      required: true,
+    },
+    localGuardian: {
+      type: localGuardianSchema,
+      required: true,
+    },
     profileImage: {
       type: String,
     },
-    isActive: ['active', 'blocked'],
+    isActive: {
+      type: String,
+      enum: ['active', 'blocked'],
+      default: 'active',
+    },
   },
   {
     timestamps: true,

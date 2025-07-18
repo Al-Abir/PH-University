@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import {
   Guardian,
-  IStudent,
+  TStudent,
   UserName,
   LocalGuardian,
 } from './student.interface';
@@ -75,12 +75,18 @@ const localGuardianSchema = new Schema<LocalGuardian>({
 });
 
 // Main Student Schema
-export const StudentSchema = new Schema<IStudent>(
+export const StudentSchema = new Schema<TStudent>(
   {
     id: {
       type: String,
       required: true,
       unique: true,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      required: [true, 'User id is required'],
+      unique: true,
+      ref: 'User',
     },
     name: {
       type: UserNameSchema,
@@ -130,11 +136,6 @@ export const StudentSchema = new Schema<IStudent>(
     profileImage: {
       type: String,
     },
-    isActive: {
-      type: String,
-      enum: ['active', 'blocked'],
-      default: 'active',
-    },
   },
   {
     timestamps: true,
@@ -145,4 +146,4 @@ export const StudentSchema = new Schema<IStudent>(
 );
 
 // Export the model
-export const StudentModel = model<IStudent>('Student', StudentSchema);
+export const StudentModel = model<TStudent>('Student', StudentSchema);
